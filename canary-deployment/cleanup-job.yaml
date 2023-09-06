@@ -17,5 +17,5 @@ spec:
           command:
             - "bin/bash"
             - "-c"
-            - "kubectl delete ns web-frontend-team ops-team backend-apis-team"
+            - "kubectl delete ns --ignore-not-found=true web-frontend-team ops-team backend-apis-team"
   backoffLimit: 0
