@@ -1,0 +1,18 @@
+apiVersion: admin.gloo.solo.io/v2
+kind: Workspace
+metadata:
+  name: web-frontend-team
+  namespace: gloo-mesh
+  labels:
+    allowIngress: "true"
+spec:
+  workloadClusters:
+    - name: mgmt-mesh
+      namespaces:
+        - name: web-frontend-team
+    - name: west-mesh
+      namespaces:
+        - name: bookinfo-frontends
+    - name: east-mesh
+      namespaces:
+        - name: bookinfo-frontends

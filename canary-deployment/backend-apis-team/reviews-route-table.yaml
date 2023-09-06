@@ -1,0 +1,37 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: reviews-route-rt
+  namespace: backend-apis-team
+spec:
+  hosts:
+    - 'reviews.bookinfo-backends.svc.cluster.local'
+  workloadSelectors:
+    - selector:
+        labels:
+          app: productpage
+  http:
+    - name: reviews
+      matchers:
+        - uri:
+            prefix: /
+      forwardTo:
+        destinations:
+          # 90% of the traffic to v1 on both clusters
+          # The rest to v5
+          - ref:
+              name: reviews-route-vd
+            kind: VIRTUAL_DESTINATION
+            subset:
+              version: v1
+            port:
+              number: 9080
+            weight: 80
+          - ref:
+              name: reviews-route-vd
+            kind: VIRTUAL_DESTINATION
+            subset:
+              version: v5
+            port:
+              number: 9080
+            weight: 20

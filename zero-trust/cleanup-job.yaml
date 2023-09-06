@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: clean-up-job
+  namespace: gloo-mesh
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      serviceAccountName: gloo-mesh-mgmt-server
+      restartPolicy: Never
+      containers:
+        - name: cleanup
+          image: bitnami/kubectl
+          command:
+            - "bin/bash"
+            - "-c"
+            - "kubectl delete ns web-frontend-team ops-team backend-apis-team"
+  backoffLimit: 0

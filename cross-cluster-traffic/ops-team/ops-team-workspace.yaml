@@ -1,0 +1,20 @@
+apiVersion: admin.gloo.solo.io/v2
+kind: Workspace
+metadata:
+  name: ops-team
+  namespace: gloo-mesh
+spec:
+  workloadClusters:
+    - name: mgmt-mesh
+      namespaces:
+        - name: ops-team
+    - name: west-mesh
+      namespaces:
+        - name: istio-ingress
+        - name: istio-eastwest
+        - name: gloo-mesh-addons
+    - name: east-mesh
+      namespaces:
+        - name: istio-ingress
+        - name: istio-eastwest
+        - name: gloo-mesh-addons

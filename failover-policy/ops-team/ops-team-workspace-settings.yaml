@@ -1,0 +1,33 @@
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: ops-team-settings
+  namespace: ops-team
+spec:
+  importFrom:
+    - workspaces:
+        - selector:
+            allowIngress: "true"
+      resources:
+        - kind: SERVICE
+        - kind: ALL
+          labels:
+            # Only import resources with the following label
+            exposeResource: "true"
+  exportTo:
+    - workspaces:
+        - selector:
+            allowIngress: "true"
+      resources:
+        - kind: SERVICE
+  options:
+    eastWestGateways:
+      - selector:
+          labels:
+            istio: eastwestgateway
+    federation:
+      # Explicitly disable in favor of VD
+      enabled: false
+    serviceIsolation:
+      enabled: true
+      trimProxyConfig: true
