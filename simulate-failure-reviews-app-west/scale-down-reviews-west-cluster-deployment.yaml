@@ -90,7 +90,7 @@ metadata:
     app: reviews
     version: v4
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: reviews
