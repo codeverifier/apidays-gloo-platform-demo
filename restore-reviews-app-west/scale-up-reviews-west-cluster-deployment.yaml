@@ -116,7 +116,7 @@ spec:
             - name: RATINGS_HOSTNAME
               value: "ratings.bookinfo-backends.svc.cluster.local"
             - name: CLUSTER_NAME
-              value: "${WEST_CONTEXT}"
+              value: "eks-kasunt-gp-8d8aa4f8ca30-1"
           ports:
             - containerPort: 9080
           volumeMounts:
