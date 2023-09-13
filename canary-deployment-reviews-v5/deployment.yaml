@@ -32,7 +32,7 @@ spec:
             - name: RATINGS_HOSTNAME
               value: "ratings.bookinfo-backends.svc.cluster.local"
             - name: CLUSTER_NAME
-              value: "aks-kasunt-gp-3586d447701e-1"
+              value: "aks-kasunt-gp-c36bbe48f19b-1"
           ports:
             - containerPort: 9080
           volumeMounts:
